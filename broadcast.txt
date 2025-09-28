@@ -1,0 +1,26 @@
+import { WebSocketServer  , WebSocket}  from 'ws';
+
+const wss = new WebSocketServer({port : 8080})
+
+
+let userCount: number= 0;
+let allSockets : WebSocket[] = []
+// the type of this paramnter socket is WebSocket we are importing this from ws bcoz we have to use 
+// WebSocket from this library bcoz we are using event listener from this library it
+// is also natively present in JS
+wss.on('connection' , (socket)=>{
+    userCount ++;
+
+    console.log(userCount);
+    allSockets.push(socket);
+
+    socket.on('message' , (message)=>{
+        for(let i=0;i<allSockets.length;i++){
+            const s = allSockets[i]!;
+            if(socket !== s) s.send(message.toString());
+        }
+    })
+    
+})
+
+code for broadcast application

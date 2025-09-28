@@ -1,0 +1,17 @@
+# Ignore node_modules since they're installed via package.json
+node_modules/
+
+# Ignore the compiled output
+dist/
+
+# Ignore log files
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+
+# Environment variables (if applicable)
+.env
+
+# Temporary files
+tmp/
